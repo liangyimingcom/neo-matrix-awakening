@@ -20,50 +20,27 @@
 
 ### 1. 安装 Amazon Q CLI
 
-#### macOS 用户
+#### 
 ```bash
-# 使用 Homebrew 安装
-brew install amazon-q
+AmazonQ CLI的安装教程：
+Windows的安装：https://dev.to/aws/the-essential-guide-to-installing-amazon q-developer-cli-on-windows-lmh
 
-# 或者下载安装包
-curl -o amazon-q-cli.pkg https://amazon-q-cli.s3.amazonaws.com/amazon-q-cli-latest.pkg
-sudo installer -pkg amazon-q-cli.pkg -target /
-```
-
-#### Windows 用户
-```powershell
-# 使用 Chocolatey 安装
-choco install amazon-q-cli
-
-# 或者下载 MSI 安装包
-# 访问 https://amazon-q-cli.s3.amazonaws.com/amazon-q-cli-latest.msi
-```
-
-#### Linux 用户
-```bash
-# 下载并安装
-wget https://amazon-q-cli.s3.amazonaws.com/amazon-q-cli-latest.tar.gz
-tar -xzf amazon-q-cli-latest.tar.gz
-sudo mv amazon-q /usr/local/bin/
+linux/Mac支持一键安装 https://docs.aws.amazon.com/zh_cn/amazonq/latest/qdeveloper-ug/command-line-installing.html
 ```
 
 ### 2. 配置 Amazon Q CLI
 
 ```bash
-# 初始化配置
-amazon-q configure
-
 # 登录你的 AWS 账户
-amazon-q auth login
+q login
+
+q chat --trust-all-tools
 ```
 
 ### 3. 验证安装
 ```bash
-# 检查版本
-amazon-q --version
-
 # 测试连接
-amazon-q chat "Hello, can you help me?"
+q chat "Hello, can you help me?"
 ```
 
 ## 🎬 项目开发流程
@@ -72,14 +49,14 @@ amazon-q chat "Hello, can you help me?"
 
 #### Prompt 1: 项目启动
 ```bash
-amazon-q chat "模拟黑客帝国中NEO醒来的样子，选择药丸，要求足够的炫酷，supriseme！"
+amazon q chat "模拟黑客帝国中NEO醒来的样子，选择药丸，要求足够的炫酷，supriseme！"
 ```
 
 **预期回应**: AI 会询问你想要什么类型的技术实现
 
 #### Prompt 2: 明确技术需求
 ```bash
-amazon-q chat "全部都要 - 制作终端动画或ASCII艺术、用CSS/JavaScript创建网页动画特效、编写模拟'数字雨'效果的脚本、构建交互式选择界面"
+amazon q chat "全部都要 - 制作终端动画或ASCII艺术、用CSS/JavaScript创建网页动画特效、编写模拟'数字雨'效果的脚本、构建交互式选择界面"
 ```
 
 **学习要点**:
@@ -91,7 +68,7 @@ amazon-q chat "全部都要 - 制作终端动画或ASCII艺术、用CSS/JavaScri
 
 #### Prompt 3: 创建基础结构
 ```bash
-amazon-q chat "创建一个完整的黑客帝国风格项目，包含所有这些效果。让我先创建项目结构"
+amazon q chat "创建一个完整的黑客帝国风格项目，包含所有这些效果。让我先创建项目结构"
 ```
 
 **AI 会做什么**:
@@ -111,21 +88,11 @@ cd neo-matrix-awakening
 # - script.js
 ```
 
-#### Prompt 4: 功能测试和调试
-```bash
-amazon-q chat "修复鼠标点击没反应的问题"
-```
-
-**学习要点**:
-- 如何描述技术问题
-- AI 如何分析和解决 bug
-- 前端调试技巧
-
 ### 阶段 3：故事线扩展
 
 #### Prompt 5: 内容扩展
 ```bash
-amazon-q chat "非常好，继续延续这个故事，红药丸之后"
+amazon q chat "非常好，继续延续这个故事，红药丸之后"
 ```
 
 **AI 会添加**:
@@ -138,7 +105,7 @@ amazon-q chat "非常好，继续延续这个故事，红药丸之后"
 
 #### Prompt 6: 配置测试工具
 ```bash
-amazon-q chat "安装Playwright的MCP工具，来测试网站的鼠标点击，确保功能正常"
+amazon q chat "安装Playwright的MCP工具，来测试网站的鼠标点击，确保功能正常"
 ```
 
 **学习内容**:
@@ -150,19 +117,16 @@ amazon-q chat "安装Playwright的MCP工具，来测试网站的鼠标点击，�
 
 #### Prompt 7: 云端部署需求
 ```bash
-amazon-q chat "aws profile=oversea1, region=us-east-1. 使用amplify服务把这个网站发布出去"
+amazon q chat "region=us-east-1. AWS最佳实践把这个网站发布出去"
 ```
 
 #### Prompt 8: 安全架构要求
 ```bash
-amazon-q chat "绑在我的route53域名下面，二级域名叫neo. = neo.liangym.people.aws.dev
-
-继续任务
-
-不允许S3公开桶的配置。请配置S3私有桶，然后前面挂amplify，或者其他思路后发布。注意S3桶不能公开，要符合安全规定与aws安全最佳实践"
+amazon q chat "给我讲讲网站的工作原理，用的那些aws资源？怎么保证安全的"
 ```
 
 **学习要点**:
+
 - AWS 安全最佳实践
 - CloudFront + S3 架构
 - SSL 证书管理
@@ -172,17 +136,17 @@ amazon-q chat "绑在我的route53域名下面，二级域名叫neo. = neo.liang
 
 #### Prompt 9: 文档整理
 ```bash
-amazon-q chat "整理过程中的全部文档，markdown输出。包括AWS的架构设计与使用的资源"
+amazon q chat "整理过程中的全部文档，markdown输出。包括AWS的架构设计与使用的资源"
 ```
 
 #### Prompt 10: GitHub 发布
 ```bash
-amazon-q chat "生成 markdown 文件，我要发布到github上"
+amazon q chat "生成 markdown 文件，我要发布到github上"
 ```
 
 #### Prompt 11: 项目提交
 ```bash
-amazon-q chat "在我的github上提交这个项目"
+amazon q chat "在我的github上提交这个项目"
 ```
 
 ## 💡 Amazon Q CLI 使用技巧
@@ -192,25 +156,25 @@ amazon-q chat "在我的github上提交这个项目"
 #### ✅ 好的 Prompt 示例
 ```bash
 # 具体明确
-amazon-q chat "创建一个响应式的CSS动画，实现矩阵数字雨效果，包含日文字符，60fps流畅动画"
+amazon q chat "创建一个响应式的CSS动画，实现矩阵数字雨效果，包含日文字符，60fps流畅动画"
 
 # 包含上下文
-amazon-q chat "基于之前创建的网站，添加音效系统，使用Web Audio API生成科幻风格的音效"
+amazon q chat "基于之前创建的网站，添加音效系统，使用Web Audio API生成科幻风格的音效"
 
 # 明确技术要求
-amazon-q chat "使用AWS CloudFront + 私有S3桶部署网站，符合安全最佳实践，包含SSL证书"
+amazon q chat "使用AWS CloudFront + 私有S3桶部署网站，符合安全最佳实践，包含SSL证书"
 ```
 
 #### ❌ 避免的 Prompt 示例
 ```bash
 # 太模糊
-amazon-q chat "做个网站"
+amazon q chat "做个网站"
 
 # 缺乏上下文
-amazon-q chat "修复bug"
+amazon q chat "修复bug"
 
 # 要求不明确
-amazon-q chat "让它更好看"
+amazon q chat "让它更好看"
 ```
 
 ### 2. 迭代开发策略
@@ -218,16 +182,16 @@ amazon-q chat "让它更好看"
 #### 分步骤开发
 ```bash
 # 第1步：基础功能
-amazon-q chat "创建基本的HTML结构和CSS样式"
+amazon q chat "创建基本的HTML结构和CSS样式"
 
 # 第2步：添加交互
-amazon-q chat "添加JavaScript交互功能，包含按钮点击事件"
+amazon q chat "添加JavaScript交互功能，包含按钮点击事件"
 
 # 第3步：增强效果
-amazon-q chat "添加动画效果和视觉特效"
+amazon q chat "添加动画效果和视觉特效"
 
 # 第4步：优化性能
-amazon-q chat "优化代码性能，添加错误处理"
+amazon q chat "优化代码性能，添加错误处理"
 ```
 
 ### 3. 问题解决流程
@@ -235,13 +199,13 @@ amazon-q chat "优化代码性能，添加错误处理"
 #### 遇到问题时
 ```bash
 # 1. 描述具体问题
-amazon-q chat "网站在移动端显示异常，按钮点击没有响应"
+amazon q chat "网站在移动端显示异常，按钮点击没有响应"
 
 # 2. 提供错误信息
-amazon-q chat "浏览器控制台显示错误：TypeError: Cannot read property 'addEventListener' of null"
+amazon q chat "浏览器控制台显示错误：TypeError: Cannot read property 'addEventListener' of null"
 
 # 3. 请求具体解决方案
-amazon-q chat "请提供修复代码和解释原因"
+amazon q chat "请提供修复代码和解释原因"
 ```
 
 ## 🔧 常用命令参考
@@ -249,40 +213,40 @@ amazon-q chat "请提供修复代码和解释原因"
 ### 基本聊天命令
 ```bash
 # 开始新对话
-amazon-q chat "你的问题或需求"
+amazon q chat "你的问题或需求"
 
 # 继续对话
-amazon-q chat --continue "补充信息或新问题"
+amazon q chat --continue "补充信息或新问题"
 
 # 查看对话历史
-amazon-q history
+amazon q history
 
 # 清除对话历史
-amazon-q clear
+amazon q clear
 ```
 
 ### 文件操作命令
 ```bash
 # 让AI读取文件
-amazon-q chat "请分析这个文件的内容" --file index.html
+amazon q chat "请分析这个文件的内容" --file index.html
 
 # 让AI创建文件
-amazon-q chat "创建一个package.json文件" --output package.json
+amazon q chat "创建一个package.json文件" --output package.json
 
 # 批量处理文件
-amazon-q chat "优化所有CSS文件" --files "*.css"
+amazon q chat "优化所有CSS文件" --files "*.css"
 ```
 
 ### 项目管理命令
 ```bash
 # 项目初始化
-amazon-q init project-name
+amazon q init project-name
 
 # 生成项目文档
-amazon-q docs generate
+amazon q docs generate
 
 # 代码审查
-amazon-q review --files "*.js"
+amazon q review --files "*.js"
 ```
 
 ## 🎯 实际操作演示
@@ -291,7 +255,7 @@ amazon-q review --files "*.js"
 
 ```bash
 # 1. 启动项目
-$ amazon-q chat "我想创建一个黑客帝国风格的网站，包含数字雨动画和交互式故事"
+$ amazon q chat "我想创建一个黑客帝国风格的网站，包含数字雨动画和交互式故事"
 
 AI: 我来帮你创建一个完整的黑客帝国风格网站...
 
@@ -300,17 +264,17 @@ $ ls -la
 index.html  style.css  script.js
 
 # 3. 测试功能
-$ amazon-q chat "帮我测试网站的所有交互功能是否正常"
+$ amazon q chat "帮我测试网站的所有交互功能是否正常"
 
 AI: 我来使用自动化测试工具验证功能...
 
 # 4. 部署到云端
-$ amazon-q chat "将网站部署到AWS，使用安全的架构"
+$ amazon q chat "将网站部署到AWS，使用安全的架构"
 
 AI: 我来配置CloudFront + 私有S3桶的安全架构...
 
 # 5. 创建文档
-$ amazon-q chat "生成完整的项目文档和README"
+$ amazon q chat "生成完整的项目文档和README"
 
 AI: 我来创建专业的项目文档...
 ```
@@ -321,28 +285,28 @@ AI: 我来创建专业的项目文档...
 **症状**: AI 给出的代码或建议太抽象
 **解决方案**:
 ```bash
-amazon-q chat "请提供具体的代码实现，包含完整的函数和注释"
+amazon q chat "请提供具体的代码实现，包含完整的函数和注释"
 ```
 
 ### 问题 2: 代码不工作
 **症状**: 生成的代码有错误或不能运行
 **解决方案**:
 ```bash
-amazon-q chat "代码运行时出现以下错误：[粘贴错误信息]，请帮我修复"
+amazon q chat "代码运行时出现以下错误：[粘贴错误信息]，请帮我修复"
 ```
 
 ### 问题 3: 需要修改现有代码
 **症状**: 需要在现有基础上添加功能
 **解决方案**:
 ```bash
-amazon-q chat "基于现有的代码，添加以下功能：[具体描述]" --file current-file.js
+amazon q chat "基于现有的代码，添加以下功能：[具体描述]" --file current-file.js
 ```
 
 ### 问题 4: AWS 部署失败
 **症状**: 云服务配置出错
 **解决方案**:
 ```bash
-amazon-q chat "AWS部署失败，错误信息：[错误信息]，请检查配置并提供修复方案"
+amazon q chat "AWS部署失败，错误信息：[错误信息]，请检查配置并提供修复方案"
 ```
 
 ## 📚 进阶技巧
@@ -350,28 +314,28 @@ amazon-q chat "AWS部署失败，错误信息：[错误信息]，请检查配置
 ### 1. 使用上下文管理
 ```bash
 # 设置项目上下文
-amazon-q context set --project "neo-matrix-awakening" --tech-stack "HTML,CSS,JavaScript,AWS"
+amazon q context set --project "neo-matrix-awakening" --tech-stack "HTML,CSS,JavaScript,AWS"
 
 # 在上下文中工作
-amazon-q chat "添加新的动画效果"  # AI会知道你在说哪个项目
+amazon q chat "添加新的动画效果"  # AI会知道你在说哪个项目
 ```
 
 ### 2. 模板和代码片段
 ```bash
 # 创建可重用的模板
-amazon-q template create --name "matrix-button" --file button-template.css
+amazon q template create --name "matrix-button" --file button-template.css
 
 # 使用模板
-amazon-q chat "使用matrix-button模板创建新按钮"
+amazon q chat "使用matrix-button模板创建新按钮"
 ```
 
 ### 3. 批量操作
 ```bash
 # 批量优化文件
-amazon-q batch --command "优化性能" --files "*.js,*.css"
+amazon q batch --command "优化性能" --files "*.js,*.css"
 
 # 批量测试
-amazon-q test --all --report
+amazon q test --all --report
 ```
 
 ## 🎓 学习路径建议
@@ -402,7 +366,7 @@ amazon-q test --all --report
 - [GitHub 使用指南](https://docs.github.com/)
 
 ### 社区资源
-- [Amazon Q CLI GitHub](https://github.com/aws/amazon-q-cli)
+- [Amazon Q CLI GitHub](https://github.com/aws/amazon q-cli)
 - [AWS 开发者社区](https://dev.to/aws)
 - [前端开发资源](https://developer.mozilla.org/)
 
