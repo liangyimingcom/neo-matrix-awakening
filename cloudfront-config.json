@@ -1,0 +1,35 @@
+{
+  "CallerReference": "neo-matrix-1752547435",
+  "DefaultRootObject": "index.html",
+  "Comment": "Neo Matrix Awakening Website",
+  "Enabled": true,
+  "Origins": {
+    "Quantity": 1,
+    "Items": [
+      {
+        "Id": "neo-matrix-s3-origin",
+        "DomainName": "neo-matrix-awakening-1752547435.s3.us-east-1.amazonaws.com",
+        "S3OriginConfig": {
+          "OriginAccessIdentity": ""
+        },
+        "OriginAccessControlId": "EJ0IYQR5UN7F"
+      }
+    ]
+  },
+  "DefaultCacheBehavior": {
+    "TargetOriginId": "neo-matrix-s3-origin",
+    "ViewerProtocolPolicy": "redirect-to-https",
+    "MinTTL": 0,
+    "ForwardedValues": {
+      "QueryString": false,
+      "Cookies": {
+        "Forward": "none"
+      }
+    },
+    "TrustedSigners": {
+      "Enabled": false,
+      "Quantity": 0
+    }
+  },
+  "PriceClass": "PriceClass_100"
+}

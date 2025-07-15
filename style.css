@@ -1,0 +1,999 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', monospace;
+    background: #000;
+    color: #00ff00;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* 数字雨背景 */
+#matrix-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #000;
+}
+
+.matrix-char {
+    position: absolute;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    animation: fall linear infinite;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100vh);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* 场景切换 */
+.scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.scene.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 故障文字效果 */
+.glitch-text {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.glitch-text h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    position: relative;
+    color: #00ff00;
+    text-shadow: 
+        0 0 10px #00ff00,
+        0 0 20px #00ff00,
+        0 0 40px #00ff00;
+    animation: glitch 2s infinite;
+}
+
+.glitch-text p {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    animation: flicker 3s infinite;
+}
+
+@keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    10% { transform: translate(-2px, 2px); }
+    20% { transform: translate(2px, -2px); }
+    30% { transform: translate(-2px, -2px); }
+    40% { transform: translate(2px, 2px); }
+    50% { transform: translate(-2px, 2px); }
+    60% { transform: translate(2px, -2px); }
+    70% { transform: translate(-2px, -2px); }
+    80% { transform: translate(2px, 2px); }
+    90% { transform: translate(-2px, 2px); }
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* 脉冲效果 */
+.pulse-effect {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 2px solid #00ff00;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* 按钮样式 */
+.matrix-btn {
+    background: transparent;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    padding: 15px 30px;
+    font-family: 'Orbitron', monospace;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    margin-top: 2rem;
+    text-shadow: 0 0 10px #00ff00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.matrix-btn:hover {
+    background: #00ff00;
+    color: #000;
+    box-shadow: 0 0 30px #00ff00;
+    transform: scale(1.1);
+}
+
+/* 药丸选择场景 */
+.morpheus-text {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.morpheus-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px #00ff00;
+}
+
+.morpheus-text p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.pills-container {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+}
+
+.pill {
+    position: relative;
+    width: 120px;
+    height: 60px;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+    border: 2px solid transparent;
+}
+
+.red-pill {
+    background: linear-gradient(45deg, #ff0000, #cc0000);
+    color: white;
+}
+
+.blue-pill {
+    background: linear-gradient(45deg, #0066ff, #0044cc);
+    color: white;
+}
+
+.pill-glow {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 40px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.red-glow {
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.4) 0%, transparent 70%);
+}
+
+.blue-glow {
+    background: radial-gradient(circle, rgba(0, 102, 255, 0.4) 0%, transparent 70%);
+}
+
+.pill:hover {
+    transform: scale(1.2) rotateY(10deg);
+    border-color: #fff;
+}
+
+.pill:hover .pill-glow {
+    opacity: 1;
+}
+
+.pill span {
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.pill p {
+    font-size: 0.7rem;
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
+
+/* 矩阵代码场景 */
+.matrix-code {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+}
+
+.revelation-text {
+    text-align: center;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid #00ff00;
+}
+
+.revelation-text h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.revelation-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* 梦境场景 */
+.dream-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #001122, #003366);
+    opacity: 0.9;
+}
+
+.dream-text {
+    text-align: center;
+    z-index: 20;
+    color: #66ccff;
+}
+
+.dream-text h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px #66ccff;
+}
+
+.dream-text p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .glitch-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .pills-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .morpheus-text h2 {
+        font-size: 2rem;
+    }
+    
+    .revelation-text h1 {
+        font-size: 2rem;
+    }
+}/* 真
+实世界场景 */
+.real-world-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #1a0000 0%, #330000 50%, #000000 100%);
+    opacity: 0.9;
+}
+
+.awakening-pod {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: 0 auto 2rem;
+    perspective: 1000px;
+}
+
+.pod-interior {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ff0000, #cc0000, #990000);
+    border-radius: 50px;
+    border: 3px solid #ff6666;
+    box-shadow: 
+        inset 0 0 50px rgba(255, 0, 0, 0.3),
+        0 0 100px rgba(255, 0, 0, 0.5);
+    animation: podPulse 3s infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.pod-interior::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: bodyFloat 4s ease-in-out infinite;
+}
+
+.cables {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.cables::before,
+.cables::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 200px;
+    background: linear-gradient(180deg, #00ff00, #008800);
+    border-radius: 2px;
+    box-shadow: 0 0 10px #00ff00;
+    animation: cableGlow 2s infinite alternate;
+}
+
+.cables::before {
+    top: -50px;
+    left: 20%;
+    transform: rotate(-15deg);
+}
+
+.cables::after {
+    top: -50px;
+    right: 20%;
+    transform: rotate(15deg);
+}
+
+@keyframes podPulse {
+    0%, 100% { box-shadow: inset 0 0 50px rgba(255, 0, 0, 0.3), 0 0 100px rgba(255, 0, 0, 0.5); }
+    50% { box-shadow: inset 0 0 80px rgba(255, 0, 0, 0.6), 0 0 150px rgba(255, 0, 0, 0.8); }
+}
+
+@keyframes bodyFloat {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+@keyframes cableGlow {
+    0% { box-shadow: 0 0 10px #00ff00; }
+    100% { box-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00; }
+}
+
+.awakening-text {
+    text-align: center;
+    z-index: 20;
+}
+
+.awakening-text h1 {
+    font-size: 3rem;
+    color: #ff6666;
+    text-shadow: 0 0 20px #ff0000;
+    margin-bottom: 1rem;
+}
+
+.awakening-text p {
+    font-size: 1.2rem;
+    color: #ffcccc;
+    margin-bottom: 2rem;
+}
+
+/* 尼布甲尼撒号场景 */
+.ship-interior {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(0, 255, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(0, 255, 0, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #001100 0%, #002200 50%, #000000 100%);
+}
+
+.crew-members {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 3rem;
+    z-index: 20;
+    position: relative;
+}
+
+.morpheus-figure, .trinity-figure {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #00ff00;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.morpheus-figure h2, .trinity-figure h3 {
+    color: #00ff00;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px #00ff00;
+}
+
+.morpheus-figure p, .trinity-figure p {
+    color: #ccffcc;
+    font-style: italic;
+}
+
+.ship-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 60px;
+    background: linear-gradient(90deg, #003300, #006600, #003300);
+    border: 2px solid #00ff00;
+    border-radius: 30px;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    animation: controlPulse 3s infinite;
+}
+
+@keyframes controlPulse {
+    0%, 100% { box-shadow: 0 0 30px rgba(0, 255, 0, 0.3); }
+    50% { box-shadow: 0 0 50px rgba(0, 255, 0, 0.6); }
+}
+
+/* 训练场景 */
+.dojo-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.02) 0px,
+            rgba(255, 255, 255, 0.02) 2px,
+            transparent 2px,
+            transparent 10px
+        ),
+        linear-gradient(180deg, #000033 0%, #000066 50%, #000000 100%);
+}
+
+.training-interface {
+    text-align: center;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 3rem;
+    border-radius: 15px;
+    border: 2px solid #00ff00;
+    backdrop-filter: blur(10px);
+}
+
+.training-interface h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #00ff00;
+    text-shadow: 0 0 20px #00ff00;
+}
+
+.skill-matrix {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.skill-item {
+    text-align: left;
+    padding: 1rem;
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid #00ff00;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.skill-item:hover {
+    background: rgba(0, 255, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.skill-item span {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #00ff00;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #00ff00, #66ff66);
+    border-radius: 4px;
+    transition: width 2s ease;
+    box-shadow: 0 0 10px #00ff00;
+}
+
+/* 救世主场景 */
+.oracle-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%),
+        linear-gradient(180deg, #001a1a 0%, #003333 50%, #000000 100%);
+}
+
+.oracle-text {
+    text-align: center;
+    margin-bottom: 3rem;
+    z-index: 20;
+}
+
+.oracle-text h1 {
+    font-size: 3rem;
+    color: #ffd700;
+    text-shadow: 0 0 30px #ffd700;
+    margin-bottom: 1rem;
+    animation: oracleGlow 3s infinite;
+}
+
+.oracle-text p {
+    font-size: 1.3rem;
+    color: #ffeeaa;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+}
+
+@keyframes oracleGlow {
+    0%, 100% { text-shadow: 0 0 30px #ffd700; }
+    50% { text-shadow: 0 0 50px #ffd700, 0 0 70px #ffd700; }
+}
+
+.neo-powers {
+    position: relative;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.power-aura {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    border: 3px solid #ffd700;
+    border-radius: 50%;
+    animation: powerPulse 2s infinite;
+}
+
+.power-aura::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    border: 2px solid #00ff00;
+    border-radius: 50%;
+    animation: powerPulse 2s infinite 0.5s;
+}
+
+.power-aura::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    animation: powerPulse 2s infinite 1s;
+}
+
+@keyframes powerPulse {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.7;
+    }
+}
+
+.neo-powers h2 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-shadow: 0 0 20px #ffffff;
+    z-index: 10;
+    position: relative;
+    margin: 2rem 0;
+}
+
+.matrix-vision {
+    width: 100%;
+    height: 100px;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            #00ff00 0px,
+            #00ff00 2px,
+            transparent 2px,
+            transparent 20px
+        );
+    opacity: 0.3;
+    animation: visionScan 3s infinite;
+}
+
+@keyframes visionScan {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+}
+
+.final-btn {
+    background: linear-gradient(45deg, #ffd700, #ffaa00);
+    color: #000;
+    border: 2px solid #ffd700;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 20px 40px;
+    text-shadow: none;
+    box-shadow: 0 0 40px #ffd700;
+    animation: finalBtnPulse 2s infinite;
+}
+
+.final-btn:hover {
+    background: linear-gradient(45deg, #ffaa00, #ffd700);
+    box-shadow: 0 0 60px #ffd700;
+    transform: scale(1.1);
+}
+
+@keyframes finalBtnPulse {
+    0%, 100% { box-shadow: 0 0 40px #ffd700; }
+    50% { box-shadow: 0 0 80px #ffd700, 0 0 120px #ffd700; }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .skill-matrix {
+        grid-template-columns: 1fr;
+    }
+    
+    .crew-members {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .awakening-pod {
+        width: 250px;
+        height: 320px;
+    }
+    
+    .power-aura {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .power-aura::before {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .power-aura::after {
+        width: 80px;
+        height: 80px;
+    }
+}/* 
+震动动画 */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10% { transform: translateX(-10px); }
+    20% { transform: translateX(10px); }
+    30% { transform: translateX(-10px); }
+    40% { transform: translateX(10px); }
+    50% { transform: translateX(-10px); }
+    60% { transform: translateX(10px); }
+    70% { transform: translateX(-10px); }
+    80% { transform: translateX(10px); }
+    90% { transform: translateX(-10px); }
+}
+
+/* 粒子浮动动画 */
+@keyframes particleFloat {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateY(-50px) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100px) scale(0);
+    }
+}
+
+/* 胜利脉冲动画 */
+@keyframes victoryPulse {
+    0%, 100% {
+        box-shadow: 0 0 50px #ffd700;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        box-shadow: 0 0 100px #ffd700, 0 0 150px #ffd700;
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+}
+
+/* 额外的视觉增强 */
+.scene {
+    backdrop-filter: blur(2px);
+}
+
+.scene.active {
+    backdrop-filter: blur(0px);
+}
+
+/* 技能下载特效 */
+.skill-item.downloading {
+    animation: skillPulse 1s infinite;
+    border-color: #ffff00;
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
+}
+
+.skill-item.completed {
+    animation: skillComplete 0.5s ease-out;
+    border-color: #00ff00;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.7);
+}
+
+@keyframes skillPulse {
+    0%, 100% { 
+        background: rgba(255, 255, 0, 0.1);
+        transform: scale(1);
+    }
+    50% { 
+        background: rgba(255, 255, 0, 0.3);
+        transform: scale(1.02);
+    }
+}
+
+@keyframes skillComplete {
+    0% { 
+        background: rgba(255, 255, 0, 0.3);
+        transform: scale(1.02);
+    }
+    100% { 
+        background: rgba(0, 255, 0, 0.2);
+        transform: scale(1);
+    }
+}
+
+/* 增强的按钮悬停效果 */
+.matrix-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.matrix-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.matrix-btn:hover::before {
+    left: 100%;
+}
+
+/* 增强的药丸3D效果 */
+.pill {
+    transform-style: preserve-3d;
+}
+
+.pill::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    transform: translateZ(10px);
+}
+
+/* 矩阵代码增强效果 */
+.matrix-code::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 2px,
+            rgba(0, 255, 0, 0.03) 2px,
+            rgba(0, 255, 0, 0.03) 4px
+        );
+    animation: matrixScan 3s linear infinite;
+}
+
+@keyframes matrixScan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+/* 真实世界的管道效果 */
+.cables::before,
+.cables::after {
+    animation: cableGlow 2s infinite alternate, cableFlow 4s linear infinite;
+}
+
+@keyframes cableFlow {
+    0%, 100% { 
+        background: linear-gradient(180deg, #00ff00, #008800);
+    }
+    25% { 
+        background: linear-gradient(180deg, #008800, #00ff00);
+    }
+    50% { 
+        background: linear-gradient(180deg, #00ff00, #00aa00);
+    }
+    75% { 
+        background: linear-gradient(180deg, #00aa00, #00ff00);
+    }
+}
+
+/* 先知场景的神秘光效 */
+.oracle-bg::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: oracleAura 6s ease-in-out infinite;
+}
+
+@keyframes oracleAura {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.6;
+    }
+}
+
+/* 响应式优化 */
+@media (max-width: 480px) {
+    .glitch-text h1 {
+        font-size: 2rem;
+    }
+    
+    .oracle-text h1 {
+        font-size: 2rem;
+    }
+    
+    .final-btn {
+        font-size: 1.2rem;
+        padding: 15px 25px;
+    }
+    
+    .training-interface {
+        padding: 2rem 1rem;
+    }
+    
+    .awakening-pod {
+        width: 200px;
+        height: 280px;
+    }
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+    .matrix-btn {
+        border-width: 3px;
+    }
+    
+    .pill {
+        border-width: 3px;
+    }
+    
+    .glitch-text h1 {
+        text-shadow: 
+            0 0 5px #00ff00,
+            0 0 10px #00ff00,
+            0 0 15px #00ff00,
+            0 0 20px #00ff00;
+    }
+}
+
+/* 减少动画模式支持 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .matrix-char {
+        animation: none;
+    }
+    
+    .pulse-effect {
+        animation: none;
+    }
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑客帝国 - NEO觉醒</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="matrix-rain"></div>
+    
+    <div id="awakening-scene" class="scene active">
+        <div class="glitch-text">
+            <h1>NEO...</h1>
+            <p>醒来吧...</p>
+        </div>
+        <div class="pulse-effect"></div>
+        <button id="wake-up-btn" class="matrix-btn">觉醒</button>
+    </div>
+
+    <div id="pill-choice-scene" class="scene">
+        <div class="morpheus-text">
+            <h2>选择你的命运</h2>
+            <p>这是你最后的机会。之后就没有回头路了。</p>
+        </div>
+        
+        <div class="pills-container">
+            <div class="pill red-pill" id="red-pill">
+                <div class="pill-glow red-glow"></div>
+                <span>红色药丸</span>
+                <p>看到真相</p>
+            </div>
+            
+            <div class="pill blue-pill" id="blue-pill">
+                <div class="pill-glow blue-glow"></div>
+                <span>蓝色药丸</span>
+                <p>回到梦境</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="matrix-scene" class="scene">
+        <div class="matrix-code"></div>
+        <div class="revelation-text">
+            <h1 class="glitch-text">欢迎来到真实世界</h1>
+            <p>矩阵就是一个计算机生成的梦境世界...</p>
+            <button id="continue-btn" class="matrix-btn">继续觉醒</button>
+        </div>
+    </div>
+
+    <div id="real-world-scene" class="scene">
+        <div class="real-world-bg"></div>
+        <div class="awakening-pod">
+            <div class="pod-interior"></div>
+            <div class="cables"></div>
+        </div>
+        <div class="awakening-text">
+            <h1>真实世界</h1>
+            <p>你的身体从未离开过这个培养舱...</p>
+            <button id="stand-up-btn" class="matrix-btn">站起来</button>
+        </div>
+    </div>
+
+    <div id="nebuchadnezzar-scene" class="scene">
+        <div class="ship-interior"></div>
+        <div class="crew-members">
+            <div class="morpheus-figure">
+                <h2>Morpheus</h2>
+                <p>"欢迎来到真实世界，Neo"</p>
+            </div>
+            <div class="trinity-figure">
+                <h3>Trinity</h3>
+                <p>"我们一直在等你"</p>
+            </div>
+        </div>
+        <div class="ship-controls"></div>
+        <button id="training-btn" class="matrix-btn">开始训练</button>
+    </div>
+
+    <div id="training-scene" class="scene">
+        <div class="dojo-bg"></div>
+        <div class="training-interface">
+            <h1>训练程序</h1>
+            <div class="skill-matrix">
+                <div class="skill-item" data-skill="kungfu">
+                    <span>功夫</span>
+                    <div class="progress-bar"><div class="progress" style="width: 0%"></div></div>
+                </div>
+                <div class="skill-item" data-skill="weapons">
+                    <span>武器</span>
+                    <div class="progress-bar"><div class="progress" style="width: 0%"></div></div>
+                </div>
+                <div class="skill-item" data-skill="hacking">
+                    <span>黑客技术</span>
+                    <div class="progress-bar"><div class="progress" style="width: 0%"></div></div>
+                </div>
+                <div class="skill-item" data-skill="matrix">
+                    <span>矩阵操控</span>
+                    <div class="progress-bar"><div class="progress" style="width: 0%"></div></div>
+                </div>
+            </div>
+            <button id="download-skills-btn" class="matrix-btn">下载技能</button>
+        </div>
+    </div>
+
+    <div id="the-one-scene" class="scene">
+        <div class="oracle-bg"></div>
+        <div class="oracle-text">
+            <h1>先知的预言</h1>
+            <p>"你就是那个人，Neo"</p>
+            <p>"现在，去拯救人类吧"</p>
+        </div>
+        <div class="neo-powers">
+            <div class="power-aura"></div>
+            <h2>你已觉醒</h2>
+            <div class="matrix-vision"></div>
+        </div>
+        <button id="save-humanity-btn" class="matrix-btn final-btn">拯救人类</button>
+    </div>
+
+    <div id="dream-scene" class="scene">
+        <div class="dream-overlay"></div>
+        <div class="dream-text">
+            <h1>回到舒适的梦境</h1>
+            <p>无知即是福...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
